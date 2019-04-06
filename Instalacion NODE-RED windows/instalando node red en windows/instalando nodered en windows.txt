@@ -1,0 +1,11 @@
+#1 instalar nodejs_v6
+#2 instalar gitbash
+#3 iniciar gitbash
+#instalar paquete node-red :
+#NOTA: si tienen alguun antivirus, desactivar
+
+npm install  node-red -g
+
+
+#en otra terminal abrir:
+node-red
