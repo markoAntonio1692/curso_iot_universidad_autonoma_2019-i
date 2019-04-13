@@ -1,0 +1,11 @@
+#instalacion valida para versiones windows 10
+
+1)instalar mosquitto-1.4.9-install-win32
+2)instalar Win32OpenSSL-1_1_0
+3)Ubicar el directorio donde se instalo OpenSSL en C:\ , copiar la carpeta bin y pegarlo en el directorio donde se instalo Mosquitto: C:\Program Files (x86), dentro de la carpera mosquitto pegarlo.
+4) Pegar las librerias dll tambien en la carpeta.
+5)Volver a reinstalar el instalador de mosquitto-1.4.9-install-win32
+6)ir a servicios de Windows: ubicar el servicio de mosquitto e iniciarlo
+7)para comprobar hay que iniciar el cmd y escribir el comando "netstat -an"
+ y verificar que este escuchando el puesto 1883 de mosquitto
+8) verificar el firewall de window, en caso este bloqueado el puerto 1883, agrergarlo a la lista 
