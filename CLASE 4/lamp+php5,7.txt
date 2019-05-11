@@ -1,0 +1,74 @@
+############ACTUALIZAR REPOSITORIOS#################
+sudo apt-get update
+sudo apt-get upgrade
+
+############PRUEBA DE CONECTIVIDAD (internet)#######
+ping www.google.com
+
+#########CONFIGURAR SERVIDOR SSH################
+sudo apt-get install openssh-server
+sudo /etc/init.d/ssh start
+
+
+############HABILITANDO FIREWALL####################
+sudo ufw status
+sudo ufw app list
+sudo ufw allow OpenSSH
+sudo ufw status
+sudo ufw allow 80
+sudo ufw allow 21
+sudo ufw enable
+
+
+#####INSTALANDO APACHE SERVER + PHP7+ MYSQL + PHPMYADMIN#####
+sudo apt-get install apache2
+
+sudo apt-get install libapache2-mod-php php7.0-mbstring php-gettext
+sudo apt-get install php libapache2-mod-php php-mcrypt php-mysql php-cgi php-curl php-json
+
+sudo apt-get install mysql-server mysql-client libmysqlclient-dev
+sudo apt-get install phpmyadmin
+ 
+
+
+sudo chmod 777 -R /var/www
+
+sudo service apache2 restart
+#sudo service apache2 start
+#sudo service apache2 stop
+
+
+
+
+
+
+################################################################################
+##########OPCIONAL, en caso se requiera trabajar con php 5, desinstalar los paquetes de php7 previamente............
+
+#### INSTALAR PHP 5 y 7##############################
+sudo apt-get install software-properties-common
+ 
+sudo add-apt-repository -y ppa:ondrej/php
+ 
+sudo apt-get update
+ 
+sudo apt-get install php7.0 php5.6 php5.6-mysql php-gettext php5.6-mbstring php-xdebug libapache2-mod-php5.6 libapache2-mod-php7.0
+ 
+#Buscar paquetes que necesitemos e instalarlos si fuera necesario
+		#apt-cache search php- | less
+
+
+ 
+sudo apt-get install php5.6-cli php5.6-intl php5.6-curl php5.6-mcrypt php5.6-zip php5.6-xml
+ 
+#Si es necesario cambiar algún parámetro como memory_limit
+#sudo nano /etc/php/5.6/apache2/php.ini
+
+######Activar PHP 5.6 / Desactivar PHP 7.0###########
+#sudo a2dismod php7.0 ; sudo a2enmod php5.6 ; sudo service apache2 restart
+#sudo ln -sfn /usr/bin/php5.6 /etc/alternatives/php
+
+######Activar PHP 7.0 / Desactivar PHP 5.6######
+sudo a2dismod php7.0 ; sudo a2enmod php5.6 ; sudo service apache2 restart
+sudo ln -sfn /usr/bin/php5.6 /etc/alternatives/php
+

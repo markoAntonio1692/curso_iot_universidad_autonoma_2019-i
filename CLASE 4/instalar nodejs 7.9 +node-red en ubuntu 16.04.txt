@@ -1,0 +1,52 @@
+#ejectutar todo como usuario root
+sudo apt-get update
+
+///////////////////////
+sudo apt-get install nodejs
+sudo apt-get install npm
+		
+// instalarnode-red
+sudo npm install -g --unsafe-perm node-red node-red-admin
+sudo ufw allow 1880
+#node-red    //comando para iniciar node-red
+
+#agregando usuario con permisos de root
+adduser sammy
+sudo su
+usermod -aG sudo sammy
+
+//inicio automatico de node red  
+sudo nano /etc/systemd/system/node-red.service
+
+#copiar en el fichero de configuracion solo lo que esta dentro de los guiones
+#luego presionar CTRL + O , luego ENTER para guardar y CTRL + X para salir 
+-------------------------------------------
+	[Unit]
+Description=Node-RED
+After=syslog.target network.target
+
+[Service]
+ExecStart=/usr/local/bin/node-red-pi --max-old-space-size=128 -v
+Restart=on-failure
+KillSignal=SIGINT
+
+# log output to syslog as 'node-red'
+SyslogIdentifier=node-red
+StandardOutput=syslog
+
+# non-root user to run as
+WorkingDirectory=/home/sammy/
+User=sammy
+Group=sammy
+
+[Install]
+WantedBy=multi-user.target
+--------------------------------------------
+
+
+sudo systemctl enable node-red   //habilitar servicio automatico de node-red
+sudo systemctl start node-red    //iniciar servicoo de node-red
+sudo systemctl status node-red     //verificar estado de servicio
+
+#LUEGO DIRIGIRSE AL NAVEGADOR Y ESCRIBIR EN LA BARRA DE DIRECCIONES:
+http://localhost:1880  ó  http://127.0.0.1:1880 ó http://[IP DEL HOST]:1880
